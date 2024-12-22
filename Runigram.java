@@ -67,9 +67,8 @@ public class Runigram {
 	for (int i = 0; i < image.length; i++) {
 		for (int j = 0; j < image[i].length; j++) {
 		print(image[i][j]);	
-		System.out.println(" ");
 		}
-	System.out.println(image);	
+	System.out.println();	
 	}
 		//// Replace this comment with your code
 		//// Notice that all you have to do is print every element (i,j) of the array using the print(Color) function.
