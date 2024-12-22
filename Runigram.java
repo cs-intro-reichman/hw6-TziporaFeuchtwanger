@@ -108,12 +108,9 @@ public class Runigram {
 	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
 	// the three values r = lum, g = lum, b = lum.
 	private static Color luminance(Color pixel) {
-		Double red = pixel.getRed()*0.299;
-		Double blue = pixel.getBlue()*0.114;
-		Double green = pixel.getGreen()*0.587;
-		int lum = (int)(red + blue + green);
-		Color toLum = new Color (lum,lum,lum);
-		return toLum; 
+		int toLum = 0;
+		toLum = (int)(0.299*pixel.getRed() + 0.587*pixel.getGreen() + 0.114*pixel.getBlue());	
+			return new Color(toLum,toLum,toLum);
 	}
 	
 	/**
@@ -121,25 +118,11 @@ public class Runigram {
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
 		// Grayscale conversion constants
-		double rToGrey = 0.299;
-		double gToGrey = 0.587;
-		double bToGrey = 0.114;
 		Color[][] imageGray = new Color [image.length][image[0].length];
 		for (int i = 0; i < image.length; i++) {
 			for (int j = 0; j < image[i].length; j++) {
-				
-				int red = image[i][j].getRed();
-				int green = image[i][j].getGreen();
-				int blue = image[i][j].getBlue();
-	
-				// Compute the grayscale value using weighted RGB
-				int grayValue = (int) (red * rToGrey + green * gToGrey + blue * bToGrey);
-	
-				// Clamp the grayscale value to the valid range [0, 255]
-				grayValue = Math.min(255, Math.max(0, grayValue));
-	
-				// Create a new grayscale color and assign it to the grayscale image
-				imageGray[i][j] = new Color(grayValue, grayValue, grayValue);
+				Color pixel = luminance(image[i][j]);
+				imageGray[i][j] = pixel;
 			}
 		}
 	
