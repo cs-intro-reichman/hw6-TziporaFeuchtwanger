@@ -78,31 +78,31 @@ public class Runigram {
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
-	for (int i = image.length-1; i > 0; i--) {
-		for (int j = 0; j < image[i].length; j++) {
-			print(image[i][j]);
-			System.out.println(" ");
-			
+		int rows = image.length;
+		int cols = image[0].length;
+		Color[][] flipped = new Color[rows][cols];
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				flipped[i][j] = image[i][cols - j - 1];
+			}
 		}
-		
-	}	//// Replace the following statement with your code
-		return image;
+		return flipped;
 	}
 	
 	/**
 	 * Returns an image which is the vertically flipped version of the given image. 
 	 */
 	public static Color[][] flippedVertically(Color[][] image){
-	for (int i = 0; i < image.length; i++) {
-		for (int j = image[i].length-1; j > 0; j--) {
-			print(image[i][j]);
-			System.out.println(" ");
-			
+			int rows = image.length;
+			int cols = image[0].length;
+			Color[][] flipped = new Color[rows][cols];
+			for (int i = 0; i < rows; i++) {
+				flipped[i] = image[rows - i - 1];
+			}
+			return flipped;
 		}
-		
-	}	//// Replace the following statement with your code
-		return image;
-	}
+			
+	
 	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 
 	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
@@ -189,17 +189,21 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		int w = source.length;
-		int h = source[0].length;
-		scaled(target,w,h);
-		Color[][] imageMorph = new Color[w][h];
-		int alpha = n;
-		for (int i = n; i < n; i++) {
-			imageMorph[0][0] =  blend(target[0][0], source[0][0],n);
-			alpha -= i;
+		int rows = source.length;
+		int cols = source[0].length;
+		target = scaled(target, rows, cols); // Scale target to match source
+		for (int step = 0; step <= n; step++) {
+			double alpha = step / (double) n;
+			Color[][] blended = new Color[rows][cols];
+			for (int i = 0; i < rows; i++) {
+				for (int j = 0; j < cols; j++) {
+					blended[i][j] = blend(source[i][j], target[i][j], alpha);
+				}
+			}
+			display(blended); // Display each intermediate image
+			StdDraw.pause(100); // Pause for animation
 		}
-
-		}
+	}
 	
 	/** Creates a canvas for the given image. */
 	public static void setCanvas(Color[][] image) {
