@@ -138,9 +138,11 @@ public class Runigram {
 		Color[][] resized = new Color [height][width];
 		int imageHeight = image.length;
 		int imageWidth = image[0].length;
-			for (int i = 0; i < resized.length; i++) {
-			for (int j = 0; j < resized[0].length; j++) {
-				resized[i][j] = image[i*(imageWidth/width)][j*(imageHeight/height)];
+		double heightRatio = (double)imageHeight/height;
+		double widthRatio = (double)imageWidth/width;
+			for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				resized[i][j] = image[(int)(j*widthRatio)][(int)(i*heightRatio/height)];
 			}	
 			}
 		return resized;
