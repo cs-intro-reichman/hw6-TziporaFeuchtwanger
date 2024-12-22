@@ -120,22 +120,37 @@ public class Runigram {
 	 * Returns an image which is the grayscaled version of the given image.
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
-		Double rToGrey = 0.299;
-		Double gToGrey = 0.587;
-		Double bToGrey = 0.114;
+		// Grayscale conversion constants
+		double rToGrey = 0.299;
+		double gToGrey = 0.587;
+		double bToGrey = 0.114;
+	
+		// Create a new image array to store the grayscale image
 		Color[][] imageGray = new Color[image.length][image[0].length];
+	
+		// Iterate through each pixel in the image
 		for (int i = 0; i < image.length; i++) {
-			for (int j = image[i].length-1; j > 0; j--) {
+			for (int j = 0; j < image[i].length; j++) {
+				// Extract the RGB components of the current pixel
 				int red = image[i][j].getRed();
 				int green = image[i][j].getGreen();
 				int blue = image[i][j].getBlue();
-
+	
+				// Compute the grayscale value using weighted RGB
 				int grayValue = (int) (red * rToGrey + green * gToGrey + blue * bToGrey);
+				
+				// Clamp the grayscale value to the valid range [0, 255]
+				grayValue = Math.min(255, Math.max(0, grayValue));
+	
+				// Create a new grayscale color and assign it to the grayscale image
 				imageGray[i][j] = new Color(grayValue, grayValue, grayValue);
 			}
-		}	
+		}
+	
+		// Return the grayscale image
 		return imageGray;
-	}	
+	}
+	
 	
 	/**
 	 * Returns an image which is the scaled version of the given image. 
