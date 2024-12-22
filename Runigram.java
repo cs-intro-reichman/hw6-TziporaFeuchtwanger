@@ -138,7 +138,7 @@ public class Runigram {
 	
 				// Compute the grayscale value using weighted RGB
 				int grayValue = (int) (red * rToGrey + green * gToGrey + blue * bToGrey);
-				
+	
 				// Clamp the grayscale value to the valid range [0, 255]
 				grayValue = Math.min(255, Math.max(0, grayValue));
 	
@@ -150,7 +150,6 @@ public class Runigram {
 		// Return the grayscale image
 		return imageGray;
 	}
-	
 	
 	/**
 	 * Returns an image which is the scaled version of the given image. 
