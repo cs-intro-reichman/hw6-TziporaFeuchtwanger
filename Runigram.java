@@ -124,14 +124,10 @@ public class Runigram {
 		double rToGrey = 0.299;
 		double gToGrey = 0.587;
 		double bToGrey = 0.114;
-	
-		// Create a new image array to store the grayscale image
-		Color[][] imageGray = new Color[image.length][image[0].length];
-	
-		// Iterate through each pixel in the image
+		Color[][] imageGray = new Color [image.length][image[0].length];
 		for (int i = 0; i < image.length; i++) {
 			for (int j = 0; j < image[i].length; j++) {
-				// Extract the RGB components of the current pixel
+				
 				int red = image[i][j].getRed();
 				int green = image[i][j].getGreen();
 				int blue = image[i][j].getBlue();
