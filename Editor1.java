@@ -14,6 +14,7 @@ public class Editor1 {
 	public static void main (String[] args){
 		String fileName = args[0];
 		String action = args[1];
+		System.out.println(fileName+action);
 		// Reads the input image and creates an empty output image
 		Color[][] imageIn = Runigram.read(fileName);	
 		Color[][] imageOut = null;	
