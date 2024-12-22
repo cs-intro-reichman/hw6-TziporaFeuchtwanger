@@ -142,7 +142,7 @@ public class Runigram {
 		double widthRatio = (double)imageWidth/width;
 			for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
-				resized[i][j] = image[(int)(j*widthRatio)][(int)(i*heightRatio/height)];
+				resized[i][j] = image[(int)(i*heightRatio)][(int)(j*widthRatio)];
 			}	
 			}
 		return resized;
